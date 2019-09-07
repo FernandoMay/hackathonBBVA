@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class Clima {
   final int userId;
@@ -22,21 +19,11 @@ class Clima {
   }
 }
 
-
 class Uno extends StatelessWidget {
+  
+  final Future<Clima> post;
 
-  Future<Clima> fetchPost() async {
-  final response =
-      await http.get('https://jsonplaceholder.typicode.com/posts/1');
-
-  if (response.statusCode == 200) {
-    // If the call to the server was successful, parse the JSON.
-    return Clima.fromJson(json.decode(response.body));
-  } else {
-    // If that call was not successful, throw an error.
-    throw Exception('Failed to load post');
-  }
-}
+  Uno({this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +35,12 @@ class Uno extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        actions: <Widget>[
+        /*actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {},
           ),
-        ],
+        ],*/
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -62,10 +49,26 @@ class Uno extends StatelessWidget {
               SizedBox(
                 height: 30.0,
               ),
-              Container(
-                height: 70.0,
-                child: Center(
-                  child: Text("Clima"),
+              Center(
+                child: FutureBuilder<Clima>(
+                  future: post,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Column(
+                        children: <Widget>[
+                          MyContainer(
+                              texto: snapshot.data.userId.toString()),
+                          MyContainer(texto: snapshot.data.title),
+                          MyContainer(texto: snapshot.data.body),
+                        ],
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
+                    }
+
+                    // By default, show a loading spinner.
+                    return CircularProgressIndicator();
+                  },
                 ),
               ),
               SizedBox(
@@ -75,6 +78,41 @@ class Uno extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class MyContainer extends StatelessWidget {
+  final String texto;
+
+  MyContainer({this.texto});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      constraints: BoxConstraints(
+        minWidth: MediaQuery.of(context).size.width - 36,
+      ),
+      padding: EdgeInsets.all(20.0),
+      margin: EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(12.0),
+          bottomRight: Radius.circular(12.0),
+          topLeft: Radius.circular(12.0),
+          topRight: Radius.circular(12.0),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.12),
+            offset: Offset(0, 10),
+            blurRadius: 30,
+          ),
+        ],
+      ),
+      child: Text(texto),
     );
   }
 }

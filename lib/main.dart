@@ -2,6 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:bbva/uno.dart';
 import 'package:bbva/dos.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+Future<Clima> fetchPost() async {
+  final response =
+      await http.get('https://jsonplaceholder.typicode.com/posts/1');
+
+  if (response.statusCode == 200) {
+    // If the call to the server was successful, parse the JSON.
+    return Clima.fromJson(json.decode(response.body));
+  } else {
+    // If that call was not successful, throw an error.
+    throw Exception('Failed to load post');
+  }
+}
 
 void main() => runApp(MyApp());
 
@@ -37,7 +52,9 @@ class MyHomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   PageTransition(
-                    child: Uno(),
+                    child: Uno(
+                      post: fetchPost(),
+                    ),
                     type: PageTransitionType.rightToLeft,
                   ),
                 );
