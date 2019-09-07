@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:bbva/uno.dart';
+import 'package:bbva/dos.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,30 +29,61 @@ class MyHomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                GestureDetector(
-                  child: MyCard(),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        child: Uno(),
-                        type: PageTransitionType.rightToLeft,
-                      ),
-                    );
-                  },
-                ),
-                MyCard(),
-              ],
+            GestureDetector(
+              child: MyCard(
+                imagen: 'lib/icons/frio.png',
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: Uno(),
+                    type: PageTransitionType.rightToLeft,
+                  ),
+                );
+              },
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                MyCard(),
-                MyCard(),
-              ],
+            GestureDetector(
+              child: MyCard(
+                imagen: 'lib/icons/lluvia.png',
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: Dos(),
+                    type: PageTransitionType.rightToLeft,
+                  ),
+                );
+              },
+            ),
+            GestureDetector(
+              child: MyCard(
+                imagen: 'lib/icons/templado.png',
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: Uno(),
+                    type: PageTransitionType.rightToLeft,
+                  ),
+                );
+              },
+            ),
+            GestureDetector(
+              child: MyCard(
+                imagen: 'lib/icons/vientos.png',
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: Uno(),
+                    type: PageTransitionType.rightToLeft,
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -69,12 +101,11 @@ class MyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 2 - 40,
-      width: MediaQuery.of(context).size.width / 2 - 40,
+      width: MediaQuery.of(context).size.width - 40,
       margin: EdgeInsets.all(20.0),
       padding: EdgeInsets.symmetric(vertical: 12.0),
       decoration: BoxDecoration(
-        color: Colors.red,
+        color: Colors.white,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(12.0),
           bottomRight: Radius.circular(12.0),
@@ -92,9 +123,10 @@ class MyCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
+            padding: EdgeInsets.symmetric(horizontal: 38.0, vertical: 24.0),
             child: Image(
               image: AssetImage(
-                'lib/assets/logoblanco.png',
+                imagen,
               ),
             ),
           ),
