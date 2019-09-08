@@ -18,12 +18,12 @@ class Maiz extends StatelessWidget {
         child: CarouselSlider(
           height: MediaQuery.of(context).size.height,
           items: <Widget>[
-            Center(child: MyCard(imagen: 'lib/icons/semilla1.png', texto: 'x')),
-            Center(child: MyCard(imagen: 'lib/icons/semilla2.png', texto: 'x')),
-            Center(child: MyCard(imagen: 'lib/icons/semilla3.png', texto: 'x')),
-            Center(child: MyCard(imagen: 'lib/icons/semilla4.png', texto: 'x')),
-            Center(child: MyCard(imagen: 'lib/icons/semilla5.png', texto: 'x')),
-            Center(child: MyCard(imagen: 'lib/icons/semilla6.png', texto: 'x')),
+            Center(child: MyCard(imagen: 'lib/icons/semilla1.png', texto: '')),
+            Center(child: MyCard(imagen: 'lib/icons/semilla2.png', texto: '')),
+            Center(child: MyCard(imagen: 'lib/icons/semilla3.png', texto: '')),
+            Center(child: MyCard(imagen: 'lib/icons/semilla4.png', texto: '')),
+            Center(child: MyCard(imagen: 'lib/icons/semilla5.png', texto: '')),
+            Center(child: MyCard(imagen: 'lib/icons/semilla6.png', texto: '')),
           ],
         ),
       ),
