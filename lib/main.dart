@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:bbva/uno.dart';
 import 'package:bbva/dos.dart';
+import 'package:bbva/tres.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:splashscreen/splashscreen.dart';
 
 Future<Clima> fetchPost() async {
   final response =
-      await http.get('https://jsonplaceholder.typicode.com/posts/1');
+      await http.get('https://smn.cna.gob.mx/webservices/?method=1');
 
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON.
@@ -25,10 +27,33 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'El Maíz',
+      title: 'Timmi',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green),
-      home: MyHomePage(),
+      home: SplashMove(),
+    );
+  }
+}
+
+class SplashMove extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen(
+      seconds: 13,
+      navigateAfterSeconds: MyHomePage(),
+      backgroundColor: Colors.green,
+      image: Image(
+        image: AssetImage('lib/icons/logoappq.png'),
+      ),
+      photoSize: 100.0,
+      title: Text(
+        'Timmi',
+        style: TextStyle(
+          fontSize: 38.0,
+          color: Colors.white,
+          fontStyle: FontStyle.italic,
+        ),
+      ),
     );
   }
 }
@@ -38,7 +63,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('El Maíz de México'),
+        title: Text('Timmi'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -82,7 +107,7 @@ class MyHomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   PageTransition(
-                    child: Uno(),
+                    child: Tres(),
                     type: PageTransitionType.rightToLeft,
                   ),
                 );
@@ -108,6 +133,7 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
 
 class MyCard extends StatelessWidget {
   final String imagen;

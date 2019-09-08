@@ -26,6 +26,10 @@ dependencies:
   page_transition: "^1.1.4"
   flutter_launcher_icons: "^0.6.1"
   http: any
+  aws_ai: ^0.0.3
+  splashscreen: ^1.2.0
+  webview_flutter: ^0.3.10+4
+
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +51,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - lib/icons/
+    - lib/imagenes/
 
 flutter_icons:
   image_path: "lib/icons/logoapp.png"

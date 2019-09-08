@@ -2,25 +2,95 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class Clima {
-  final int userId;
-  final int id;
-  final String title;
-  final String body;
+  final String cityId;
+  final String name;
+  final String stateAbbr;
+  final int dayNumber;
+  final String validDateUtc;
+  final String localValidDate;
+  final int hiTempF;
+  final int lowTempF;
+  final int hiTempC;
+  final int lowTempC;
+  final String phraseDay;
+  final String phraseNight;
+  final String skyText;
+  final int probabilityOfPrecip;
+  final int relativeHumidity;
+  final int windSpeedMph;
+  final int windDirection;
+  final String windDirectionCardinal;
+  final int cloudCoverage;
+  final int uvIndex;
+  final String uvDescription;
+  final int iconCode;
+  final int iconCodeNight;
+  final String skyTextNight;
+  final int latitude;
+  final int longitude;
 
-  Clima({this.userId, this.id, this.title, this.body});
+  Clima({
+    this.cityId,
+    this.cloudCoverage,
+    this.dayNumber,
+    this.hiTempC,
+    this.hiTempF,
+    this.iconCode,
+    this.iconCodeNight,
+    this.latitude,
+    this.localValidDate,
+    this.uvDescription,
+    this.longitude,
+    this.phraseDay,
+    this.lowTempC,
+    this.lowTempF,
+    this.name,
+    this.phraseNight,
+    this.probabilityOfPrecip,
+    this.relativeHumidity,
+    this.skyText,
+    this.skyTextNight,
+    this.stateAbbr,
+    this.uvIndex,
+    this.validDateUtc,
+    this.windDirection,
+    this.windDirectionCardinal,
+    this.windSpeedMph,
+  });
 
   factory Clima.fromJson(Map<String, dynamic> json) {
     return Clima(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
-      body: json['body'],
+    cityId: json['CityId'],
+    cloudCoverage: json['Name'],
+    dayNumber: json['StateAbbr'],
+    hiTempC: json['HiTempC'],
+    hiTempF: json['HiTempF'],
+    iconCode: json['IconCode'],
+    iconCodeNight: json['IconCodeNight'],
+    latitude: json['Latitude'],
+    localValidDate: json['LocalValidDate'],
+    uvDescription: json['UvDescription'],
+    longitude: json['Longitude'],
+    phraseDay: json['PhraseDay'],
+    lowTempC: json['LowTempC'],
+    lowTempF: json['LowTempF'],
+    name: json['Name'],
+    phraseNight: json['PhraseNight'],
+    probabilityOfPrecip: json['ProbabilityOfPrecip'],
+    relativeHumidity: json['RelativeHumidity'],
+    skyText: json['SkyText'],
+    skyTextNight: json['SkyTextNight'],
+    stateAbbr: json['StateAbbr'],
+    uvIndex: json['UvIndex'],
+    validDateUtc: json['ValidDateUtc'],
+    windDirection: json['WindDirection'],
+    windDirectionCardinal: json['WindDirectionCardinal'],
+    windSpeedMph: json['WindSpeedMph'],
     );
   }
 }
 
 class Uno extends StatelessWidget {
-  
   final Future<Clima> post;
 
   Uno({this.post});
@@ -56,10 +126,10 @@ class Uno extends StatelessWidget {
                     if (snapshot.hasData) {
                       return Column(
                         children: <Widget>[
-                          MyContainer(
-                              texto: snapshot.data.userId.toString()),
-                          MyContainer(texto: snapshot.data.title),
-                          MyContainer(texto: snapshot.data.body),
+                          MyContainer(texto: snapshot.data.name),
+                          MyContainer(texto: snapshot.data.dayNumber.toString()),
+                          MyContainer(texto: snapshot.data.hiTempC.toString()),
+                          MyContainer(texto: snapshot.data.lowTempC.toString()),
                         ],
                       );
                     } else if (snapshot.hasError) {

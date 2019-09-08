@@ -1,4 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:aws_ai/src/RekognitionHandler.dart';
+
+File sourceImagefile; //load source image in this File object
+String accessKey, secretKey, region ; //load your aws account info in those variables
+
+RekognitionHandler rekognition = new RekognitionHandler(accessKey, secretKey, region);
+Future<String> labelsArray = rekognition.detectLabels(sourceImagefile);
 
 class Dos extends StatelessWidget {
   @override
