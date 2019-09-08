@@ -1,3 +1,4 @@
+import 'package:bbva/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:bbva/uno.dart';
@@ -72,6 +73,7 @@ class MyHomePage extends StatelessWidget {
             GestureDetector(
               child: MyCard(
                 imagen: 'lib/icons/frio.png',
+                texto: 'Clima hoy',
               ),
               onTap: () {
                 Navigator.push(
@@ -88,12 +90,13 @@ class MyHomePage extends StatelessWidget {
             GestureDetector(
               child: MyCard(
                 imagen: 'lib/icons/lluvia.png',
+                texto: 'Estado de cosecha',
               ),
               onTap: () {
                 Navigator.push(
                   context,
                   PageTransition(
-                    child: Dos(),
+                    child: WebMap(),
                     type: PageTransitionType.rightToLeft,
                   ),
                 );
@@ -102,6 +105,7 @@ class MyHomePage extends StatelessWidget {
             GestureDetector(
               child: MyCard(
                 imagen: 'lib/icons/templado.png',
+                texto: 'Mapa',
               ),
               onTap: () {
                 Navigator.push(
@@ -116,6 +120,7 @@ class MyHomePage extends StatelessWidget {
             GestureDetector(
               child: MyCard(
                 imagen: 'lib/icons/vientos.png',
+                texto: 'Otros',
               ),
               onTap: () {
                 Navigator.push(
@@ -133,7 +138,6 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
-
 
 class MyCard extends StatelessWidget {
   final String imagen;
@@ -170,6 +174,15 @@ class MyCard extends StatelessWidget {
             child: Image(
               image: AssetImage(
                 imagen,
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(12.0),
+            child: Center(
+              child: Text(
+                texto,
+                style: TextStyle(fontSize: 28.0, fontStyle: FontStyle.italic),
               ),
             ),
           ),

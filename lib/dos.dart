@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:aws_ai/src/RekognitionHandler.dart';
 
 File sourceImagefile; //load source image in this File object
-String accessKey, secretKey, region ; //load your aws account info in those variables
+String accessKey,
+    secretKey,
+    region; //load your aws account info in those variables
 
-RekognitionHandler rekognition = new RekognitionHandler(accessKey, secretKey, region);
+RekognitionHandler rekognition =
+    new RekognitionHandler(accessKey, secretKey, region);
 Future<String> labelsArray = rekognition.detectLabels(sourceImagefile);
 
 class Dos extends StatelessWidget {
@@ -19,12 +22,6 @@ class Dos extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Container(
         child: SingleChildScrollView(
