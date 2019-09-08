@@ -13,10 +13,9 @@ class WebMap extends StatelessWidget {
           },
         ),
       ),
-      body: Container(
-        child: WebView(
-          initialUrl: 'https://cmgs.gob.mx:31/agroclimas/',
-        ),
+      body: WebView(
+        initialUrl: 'https://cmgs.gob.mx:31/agroclimas/',
+        javascriptMode: JavascriptMode.unrestricted,
       ),
     );
   }

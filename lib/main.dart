@@ -1,3 +1,6 @@
+import 'package:bbva/maiz.dart';
+import 'package:bbva/rotate.dart';
+import 'package:bbva/rotate.dart';
 import 'package:bbva/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -7,6 +10,8 @@ import 'package:bbva/tres.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:splashscreen/splashscreen.dart';
+
+import 'clima.dart';
 
 Future<Clima> fetchPost() async {
   final response =
@@ -40,19 +45,21 @@ class SplashMove extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 13,
+      seconds: 3,
       navigateAfterSeconds: MyHomePage(),
       backgroundColor: Colors.green,
+      imageBackground: AssetImage('lib/imagenes/fondo.png'),
       image: Image(
-        image: AssetImage('lib/icons/logoappq.png'),
+        image: AssetImage('lib/icons/logoapp.jpg'),
       ),
-      photoSize: 100.0,
+      photoSize: 150.0,
       title: Text(
-        'Timmi',
+        'T I M M I',
         style: TextStyle(
-          fontSize: 38.0,
+          fontSize: 74.0,
           color: Colors.white,
           fontStyle: FontStyle.italic,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
@@ -63,6 +70,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green,
       appBar: AppBar(
         title: Text('Timmi'),
         centerTitle: true,
@@ -79,9 +87,7 @@ class MyHomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   PageTransition(
-                    child: Uno(
-                      post: fetchPost(),
-                    ),
+                    child: ClimaHoy(),
                     type: PageTransitionType.rightToLeft,
                   ),
                 );
@@ -89,8 +95,23 @@ class MyHomePage extends StatelessWidget {
             ),
             GestureDetector(
               child: MyCard(
-                imagen: 'lib/icons/lluvia.png',
+                imagen: 'lib/imagenes/planta.jpg',
                 texto: 'Estado de cosecha',
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: Maiz(),
+                    type: PageTransitionType.rightToLeft,
+                  ),
+                );
+              },
+            ),
+            GestureDetector(
+              child: MyCard(
+                imagen: 'lib/imagenes/hectareas.png',
+                texto: 'Mapa',
               ),
               onTap: () {
                 Navigator.push(
@@ -104,29 +125,14 @@ class MyHomePage extends StatelessWidget {
             ),
             GestureDetector(
               child: MyCard(
-                imagen: 'lib/icons/templado.png',
-                texto: 'Mapa',
+                imagen: 'lib/icons/vientos.png',
+                texto: 'Extras',
               ),
               onTap: () {
                 Navigator.push(
                   context,
                   PageTransition(
                     child: Tres(),
-                    type: PageTransitionType.rightToLeft,
-                  ),
-                );
-              },
-            ),
-            GestureDetector(
-              child: MyCard(
-                imagen: 'lib/icons/vientos.png',
-                texto: 'Otros',
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    child: Uno(),
                     type: PageTransitionType.rightToLeft,
                   ),
                 );
@@ -169,23 +175,28 @@ class MyCard extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 38.0, vertical: 24.0),
-            child: Image(
-              image: AssetImage(
-                imagen,
+          Center(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 38.0, vertical: 24.0),
+              child: Image(
+                image: AssetImage(
+                  imagen,
+                ),
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.all(12.0),
-            child: Center(
-              child: Text(
-                texto,
-                style: TextStyle(fontSize: 28.0, fontStyle: FontStyle.italic),
-              ),
-            ),
-          ),
+          texto != null
+              ? Container(
+                  padding: EdgeInsets.all(12.0),
+                  child: Center(
+                    child: Text(
+                      texto,
+                      style: TextStyle(
+                          fontSize: 28.0, fontStyle: FontStyle.italic),
+                    ),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );
