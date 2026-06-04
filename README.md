@@ -1,16 +1,18 @@
-# bbva
+# BBVA Hackathon
 
-A new Flutter project.
+Flutter mobile app for BBVA hackathon with AWS AI services integration.
 
-## Getting Started
+## Stack
 
-This project is a starting point for a Flutter application.
+- **Flutter** (`>=2.1.0`) — Cross-platform mobile app
+- **AWS AI** — Amazon AI services integration
+- **WebView** — In-app browser component
+- **Carousel Slider** — Onboarding & content showcases
+- **Page Transitions** — Custom navigation animations
 
-A few resources to get you started if this is your first Flutter project:
+## Quick Start
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub get
+flutter run
+```
