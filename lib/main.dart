@@ -185,8 +185,7 @@ class MyCard extends StatelessWidget {
               ),
             ),
           ),
-          texto != null
-              ? Container(
+          Container(
                   padding: EdgeInsets.all(12.0),
                   child: Center(
                     child: Text(
@@ -195,8 +194,7 @@ class MyCard extends StatelessWidget {
                           fontSize: 28.0, fontStyle: FontStyle.italic),
                     ),
                   ),
-                )
-              : Container(),
+                ),
         ],
       ),
     );
