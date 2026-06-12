@@ -1,65 +1,119 @@
-import 'package:bbva/maiz.dart';
-import 'package:bbva/rotate.dart';
-import 'package:bbva/rotate.dart';
-import 'package:bbva/webview.dart';
-import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:bbva/uno.dart';
-import 'package:bbva/dos.dart';
-import 'package:bbva/tres.dart';
+import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:splashscreen/splashscreen.dart';
-
 import 'clima.dart';
+import 'uno.dart';
+import 'maiz.dart';
+import 'tres.dart';
+import 'webview.dart';
 
 Future<Clima> fetchPost() async {
   final response =
-      await http.get('https://smn.cna.gob.mx/webservices/?method=1');
-
+      await http.get(Uri.parse('https://smn.cna.gob.mx/webservices/?method=1'));
   if (response.statusCode == 200) {
-    // If the call to the server was successful, parse the JSON.
     return Clima.fromJson(json.decode(response.body));
   } else {
-    // If that call was not successful, throw an error.
     throw Exception('Failed to load post');
   }
 }
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Timmi',
+      title: 'TIMI',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green),
-      home: SplashMove(),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2E7D32),
+          brightness: Brightness.light,
+        ),
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2E7D32),
+          brightness: Brightness.dark,
+        ),
+      ),
+      home: const SplashMove(),
     );
   }
 }
 
-class SplashMove extends StatelessWidget {
+class SplashMove extends StatefulWidget {
+  const SplashMove({super.key});
+
+  @override
+  State<SplashMove> createState() => _SplashMoveState();
+}
+
+class _SplashMoveState extends State<SplashMove>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeAnim;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+    _fadeAnim = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    _controller.forward();
+    Timer(const Duration(seconds: 3), () {
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => const MyHomePage()),
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SplashScreen(
-      seconds: 3,
-      navigateAfterSeconds: MyHomePage(),
-      backgroundColor: Colors.green,
-      imageBackground: AssetImage('lib/imagenes/fondo.png'),
-      image: Image(
-        image: AssetImage('lib/icons/logoapp.jpg'),
-      ),
-      photoSize: 150.0,
-      title: Text(
-        'T I M M I',
-        style: TextStyle(
-          fontSize: 74.0,
-          color: Colors.white,
-          fontStyle: FontStyle.italic,
-          fontWeight: FontWeight.bold,
+    final theme = Theme.of(context);
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('lib/imagenes/fondo.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: FadeTransition(
+          opacity: _fadeAnim,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('lib/icons/logoapp.jpg', width: 150, height: 150),
+              const SizedBox(height: 24),
+              Text(
+                'T I M I',
+                style: TextStyle(
+                  fontSize: 74,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.bold,
+                  color: theme.colorScheme.onPrimaryContainer,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -67,12 +121,14 @@ class SplashMove extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        title: Text('Timmi'),
+        title: const Text('TIMI'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -86,10 +142,7 @@ class MyHomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  PageTransition(
-                    child: ClimaHoy(),
-                    type: PageTransitionType.rightToLeft,
-                  ),
+                  MaterialPageRoute(builder: (_) => const ClimaHoy()),
                 );
               },
             ),
@@ -101,10 +154,7 @@ class MyHomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  PageTransition(
-                    child: Maiz(),
-                    type: PageTransitionType.rightToLeft,
-                  ),
+                  MaterialPageRoute(builder: (_) => const Maiz()),
                 );
               },
             ),
@@ -116,10 +166,7 @@ class MyHomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  PageTransition(
-                    child: WebMap(),
-                    type: PageTransitionType.rightToLeft,
-                  ),
+                  MaterialPageRoute(builder: (_) => const WebMap()),
                 );
               },
             ),
@@ -131,10 +178,7 @@ class MyHomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  PageTransition(
-                    child: Tres(),
-                    type: PageTransitionType.rightToLeft,
-                  ),
+                  MaterialPageRoute(builder: (_) => const Tres()),
                 );
               },
             ),
@@ -149,26 +193,21 @@ class MyCard extends StatelessWidget {
   final String imagen;
   final String texto;
 
-  MyCard({this.imagen, this.texto});
+  const MyCard({super.key, required this.imagen, required this.texto});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 40,
-      margin: EdgeInsets.all(20.0),
-      padding: EdgeInsets.symmetric(vertical: 12.0),
+      margin: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(12.0),
-          bottomRight: Radius.circular(12.0),
-          topLeft: Radius.circular(12.0),
-          topRight: Radius.circular(12.0),
-        ),
+        color: Theme.of(context).colorScheme.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.12),
-            offset: Offset(0, 10),
+            color: Colors.black.withValues(alpha: .12),
+            offset: const Offset(0, 10),
             blurRadius: 30,
           ),
         ],
@@ -177,24 +216,23 @@ class MyCard extends StatelessWidget {
         children: <Widget>[
           Center(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 38.0, vertical: 24.0),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 38.0, vertical: 24.0),
               child: Image(
-                image: AssetImage(
-                  imagen,
-                ),
+                image: AssetImage(imagen),
               ),
             ),
           ),
           Container(
-                  padding: EdgeInsets.all(12.0),
-                  child: Center(
-                    child: Text(
-                      texto,
-                      style: TextStyle(
-                          fontSize: 28.0, fontStyle: FontStyle.italic),
-                    ),
-                  ),
-                ),
+            padding: const EdgeInsets.all(12.0),
+            child: Center(
+              child: Text(
+                texto,
+                style: const TextStyle(
+                    fontSize: 28.0, fontStyle: FontStyle.italic),
+              ),
+            ),
+          ),
         ],
       ),
     );

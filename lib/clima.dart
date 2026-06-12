@@ -1,24 +1,31 @@
-import 'package:bbva/rotate.dart';
 import 'package:flutter/material.dart';
+import 'rotate.dart';
 
 class ClimaHoy extends StatefulWidget {
+  const ClimaHoy({super.key});
+
   @override
-  _ClimaHoyState createState() => _ClimaHoyState();
+  State<ClimaHoy> createState() => _ClimaHoyState();
 }
 
 class _ClimaHoyState extends State<ClimaHoy>
     with SingleTickerProviderStateMixin {
-  AnimationController animationController;
+  late AnimationController animationController;
 
   @override
   void initState() {
     super.initState();
-    animationController = new AnimationController(
+    animationController = AnimationController(
       vsync: this,
-      duration: new Duration(seconds: 50),
+      duration: const Duration(seconds: 50),
     );
-
     animationController.repeat();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -26,10 +33,8 @@ class _ClimaHoyState extends State<ClimaHoy>
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SingleChildScrollView(
@@ -37,77 +42,38 @@ class _ClimaHoyState extends State<ClimaHoy>
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width - 40,
-              margin: EdgeInsets.all(20.0),
-              padding: EdgeInsets.symmetric(vertical: 12.0),
+              margin: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(12.0),
-                  bottomRight: Radius.circular(12.0),
-                  topLeft: Radius.circular(12.0),
-                  topRight: Radius.circular(12.0),
-                ),
+                color: Theme.of(context).colorScheme.surfaceContainerLowest,
+                borderRadius: BorderRadius.circular(12.0),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(.12),
-                    offset: Offset(0, 10),
-                    blurRadius: 30,
+            color: Colors.black.withValues(alpha: .12),
+            offset: const Offset(0, 10),
+            blurRadius: 30,
                   ),
                 ],
               ),
               child: Column(
                 children: <Widget>[
-                  SplashScreenQ(),
-                  SizedBox(
-                    height: 30.0,
-                  ),
-                  Container(
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Ficha(
-                          data: 'Temperatura Máx',
-                          datated: '28 °C',
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        Ficha(
-                          data: 'Temperatura Min',
-                          datated: '6 °C',
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        Ficha(
-                          data: 'Precipitaciones',
-                          datated: '0',
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        Ficha(
-                          data: 'Humedad',
-                          datated: '4',
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        Ficha(
-                          data: 'Velocidad viento KMH',
-                          datated: '2',
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        Ficha(
-                          data: 'Dirección viento',
-                          datated: '147',
-                        ),
-                      ],
-                    ),
+                  const SplashScreenQ(),
+                  const SizedBox(height: 30.0),
+                  Column(
+                    children: <Widget>[
+                      const SizedBox(height: 16.0),
+                      const Ficha(data: 'Temperatura Máx', datated: '28 °C'),
+                      const SizedBox(height: 20.0),
+                      const Ficha(data: 'Temperatura Min', datated: '6 °C'),
+                      const SizedBox(height: 20.0),
+                      const Ficha(data: 'Precipitaciones', datated: '0'),
+                      const SizedBox(height: 20.0),
+                      const Ficha(data: 'Humedad', datated: '4'),
+                      const SizedBox(height: 20.0),
+                      const Ficha(data: 'Velocidad viento KMH', datated: '2'),
+                      const SizedBox(height: 20.0),
+                      const Ficha(data: 'Dirección viento', datated: '147'),
+                    ],
                   ),
                 ],
               ),
@@ -123,24 +89,19 @@ class Ficha extends StatelessWidget {
   final String data;
   final String datated;
 
-  Ficha({this.data, this.datated});
+  const Ficha({super.key, required this.data, required this.datated});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 28.0, vertical: 12.0),
+      padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 12.0),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.zero,
-          bottomRight: Radius.zero,
-          topLeft: Radius.circular(12.0),
-          topRight: Radius.circular(12.0),
-        ),
+        color: Theme.of(context).colorScheme.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.12),
-            offset: Offset(0, 10),
+            color: Colors.black.withValues(alpha: .12),
+            offset: const Offset(0, 10),
             blurRadius: 30,
           ),
         ],
@@ -148,27 +109,25 @@ class Ficha extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(8),
+          Padding(
+            padding: const EdgeInsets.all(8),
             child: Text(
               data,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18.0,
                 fontStyle: FontStyle.italic,
                 color: Colors.black54,
               ),
             ),
           ),
-          Container(
-                  child: Text(
-                    datated,
-                    style: TextStyle(
-                      fontSize: 38.0,
-                      fontStyle: FontStyle.italic,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ),
+          Text(
+            datated,
+            style: const TextStyle(
+              fontSize: 38.0,
+              fontStyle: FontStyle.italic,
+              color: Colors.black87,
+            ),
+          ),
         ],
       ),
     );

@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 
 class SplashScreenQ extends StatefulWidget {
-  _SplashScreenQ createState() => new _SplashScreenQ();
+  const SplashScreenQ({super.key});
+
+  @override
+  State<SplashScreenQ> createState() => _SplashScreenQState();
 }
 
-class _SplashScreenQ extends State<StatefulWidget>
+class _SplashScreenQState extends State<SplashScreenQ>
     with SingleTickerProviderStateMixin {
-  AnimationController animationController;
-  Animation<double> animation;
+  late AnimationController animationController;
 
   @override
   void initState() {
     super.initState();
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 50),
+      duration: const Duration(seconds: 50),
     )..addListener(() => setState(() {}));
-    animation = CurvedAnimation(
-      parent: animationController,
-      curve: Curves.elasticIn,
-    );
-
     animationController.forward();
   }
 
@@ -33,7 +30,10 @@ class _SplashScreenQ extends State<StatefulWidget>
   @override
   Widget build(BuildContext context) {
     return RotationTransition(
-      turns: animation,
+      turns: CurvedAnimation(
+        parent: animationController,
+        curve: Curves.elasticIn,
+      ),
       child: Container(
         height: 180,
         width: 180,
