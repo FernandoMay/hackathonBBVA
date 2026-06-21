@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TIMI - Extras</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005312",
+                        "primary-fixed-dim": "#88d982",
+                        "tertiary-fixed": "#cee5ff",
+                        "tertiary-fixed-dim": "#96ccff",
+                        "surface-container-high": "#e7e9e2",
+                        "primary-fixed": "#a3f69c",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d9dbd4",
+                        "outline-variant": "#bfcaba",
+                        "on-primary": "#ffffff",
+                        "primary": "#0d631b",
+                        "on-tertiary-fixed-variant": "#004a75",
+                        "on-primary-container": "#cbffc2",
+                        "secondary": "#7a5649",
+                        "surface-variant": "#e1e3dc",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4ed",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#2e7d32",
+                        "secondary-fixed": "#ffdbcf",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#e9f2ff",
+                        "surface-container-highest": "#e1e3dc",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#1b6d24",
+                        "tertiary": "#005a8c",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#001d32",
+                        "on-secondary-container": "#795548",
+                        "on-surface-variant": "#40493d",
+                        "inverse-on-surface": "#eff2eb",
+                        "on-primary-fixed": "#002204",
+                        "surface": "#f8faf3",
+                        "surface-bright": "#f8faf3",
+                        "inverse-surface": "#2e312d",
+                        "surface-container": "#edefe8",
+                        "tertiary-container": "#0073b2",
+                        "inverse-primary": "#88d982",
+                        "on-secondary-fixed": "#2e150b",
+                        "background": "#f8faf3",
+                        "outline": "#707a6c",
+                        "secondary-fixed-dim": "#ebbcac",
+                        "on-secondary-fixed-variant": "#603f33",
+                        "secondary-container": "#fdcdbc",
+                        "on-background": "#191c18",
+                        "on-surface": "#191c18"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "margin-desktop": "64px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(248, 250, 243, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(112, 122, 108, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-margin-mobile h-16 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm sticky top-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="agriculture">agriculture</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">TIMI</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a modern agricultural engineer wearing a light green polo shirt. The lighting is bright and natural, suggesting an outdoor morning setting. The background is a soft-focus lush green field under a clear blue sky, maintaining a clean and corporate aesthetic consistent with the brand's professional agricultural soul." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA43ze9wUzc9R_KQBy41Lp5hoMxgvGrow0VvsxDE0B_h2zAuDRHSdUlMyTQYRBUcOa3J4REj64AVABIsF4s9ozfjGy8WoqvzXNrKa7_zvmEuedcqu1R7tCs2nphNJY3tdlw4UJY7YnJvNn4EeIB8c5NcHivyMzP8_D6sGtl1Iw8_H-UGN4J0l25rQy8mG7lZ8F3AQIUiC0vvzCukxamJ5WmxqmzrSnhMFxCpD8NeHRXcvQJ7KYIVOB4NosDPBAkDDK5Gcon2Y1SF0EZ"/>
+</div>
+</header>
+<main class="px-margin-mobile pt-lg max-w-screen-xl mx-auto">
+<!-- Header Section -->
+<section class="mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Herramientas Extra</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestión avanzada y análisis especializado para tus parcelas.</p>
+</section>
+<!-- Bento Grid Utility Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Colorimetría -->
+<div class="group relative overflow-hidden rounded-xl glass-card p-lg flex flex-col justify-between hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+<div class="absolute top-0 right-0 p-md opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[80px]" data-icon="photo_camera">photo_camera</span>
+</div>
+<div>
+<div class="w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container mb-md shadow-sm">
+<span class="material-symbols-outlined" data-icon="photo_camera">photo_camera</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">Colorimetría</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Análisis de salud foliar mediante captura de cámara en tiempo real.</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-md text-label-md text-primary font-bold px-3 py-1 rounded-full bg-primary-fixed/30">Actualizado hace 2h</span>
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Pruebas de Suelo -->
+<div class="group relative overflow-hidden rounded-xl glass-card p-lg flex flex-col justify-between hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+<div class="absolute top-0 right-0 p-md opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[80px]" data-icon="science">science</span>
+</div>
+<div>
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container mb-md shadow-sm">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">Pruebas de Suelo</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Resultados recientes de laboratorio y mapas de nutrientes NPK.</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-md text-label-md text-secondary font-bold px-3 py-1 rounded-full bg-secondary-fixed/30">Hace 3 días</span>
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-secondary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+</div>
+<!-- Imágenes de Drone -->
+<div class="group relative overflow-hidden rounded-xl glass-card p-lg flex flex-col justify-between hover:shadow-lg transition-all duration-300 hover:-translate-y-1 col-span-1 md:col-span-2">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md h-full">
+<div class="flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-lg bg-tertiary-container flex items-center justify-center text-on-tertiary-container mb-md shadow-sm">
+<span class="material-symbols-outlined" data-icon="flight">flight</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">Imágenes de Drone</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Vista aérea de alta resolución para inspección de perímetros y riego.</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-tertiary font-bold px-3 py-1 rounded-full bg-tertiary-fixed/30">Vuelo completado</span>
+</div>
+</div>
+<div class="rounded-lg overflow-hidden border border-outline-variant h-32 md:h-full min-h-[120px]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="An expansive aerial drone photograph of a lush, organized commercial farm at sunset. The fields are divided into perfect geometric sections of vibrant green and golden wheat. Long shadows stretch across the landscape, and a small, modern white drone is visible in the corner of the frame. The lighting is warm and cinematic, emphasizing the precision and scale of modern agriculture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3S6gGhdNuQtutvBQLt0rhJcm0cPYtWPkmRmvYnZnD8FlWdtQbETIfXHYk4m9colXK7bXE1yJpozlYYO0IQu0zyGqMKu64ZT8iXi2THmH1aAMfLCPuh7byRZHmgzkJEA0KQJfVdUH-gpq7KgJddMEvnXApqXXuq4bajoymwGLKbXRrv2-SymXg3q-nz2aDCQo3mJ9N4Yxcsdj5g5yaYi9IFk_ZB1mxgKt0ekog1B-ZPGMMbxbbQTmi9ZwSvIPBbLB3sT6_zVAo2Bgu"/>
+</div>
+</div>
+</div>
+<!-- Plagas y Bacterias -->
+<div class="group relative overflow-hidden rounded-xl glass-card p-lg flex flex-col justify-between hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+<div class="absolute top-0 right-0 p-md opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[80px]" data-icon="coronavirus">coronavirus</span>
+</div>
+<div>
+<div class="w-12 h-12 rounded-lg bg-error-container flex items-center justify-center text-on-error-container mb-md shadow-sm">
+<span class="material-symbols-outlined" data-icon="coronavirus" style="font-variation-settings: 'FILL' 1;">coronavirus</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">Plagas y Bacterias</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Detección predictiva mediante IA y reportes de incidencia regional.</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-md text-label-md text-error font-bold px-3 py-1 rounded-full bg-error-container/30">Alerta activa</span>
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-error hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notification_important">notification_important</span>
+</button>
+</div>
+</div>
+<!-- Placeholder for additional modules -->
+<div class="rounded-xl border-2 border-dashed border-outline-variant p-lg flex flex-col items-center justify-center text-center opacity-60 hover:opacity-100 transition-opacity cursor-pointer min-h-[200px]">
+<span class="material-symbols-outlined text-[32px] text-outline mb-md" data-icon="add_circle">add_circle</span>
+<p class="font-label-lg text-label-lg text-outline">Añadir Módulo</p>
+</div>
+</div>
+<!-- Featured Analysis Section (Asymmetric) -->
+<section class="mt-xl mb-xl">
+<div class="bg-primary-container rounded-2xl p-xl flex flex-col md:flex-row items-center gap-xl shadow-xl overflow-hidden relative">
+
+<div class="relative z-10 flex-1">
+<span class="font-label-md text-label-md uppercase tracking-widest text-on-primary-container/80 mb-sm block">Nuevo Lanzamiento</span>
+<h2 class="font-headline-lg text-headline-lg text-on-primary-container mb-md">Predicción de Cosecha IA</h2>
+<p class="font-body-lg text-body-lg text-on-primary-container/90 mb-lg max-w-md">Utiliza modelos neuronales avanzados para estimar el rendimiento de tu cosecha basándote en datos históricos y climáticos en tiempo real.</p>
+<button class="bg-surface text-primary font-label-lg text-label-lg px-xl py-3 rounded-full hover:scale-105 active:scale-95 transition-all shadow-md">Explorar ahora</button>
+</div>
+<div class="relative z-10 w-full md:w-1/3 aspect-square rounded-xl overflow-hidden shadow-2xl border-4 border-primary-fixed/20">
+<img class="w-full h-full object-cover" data-alt="A futuristic data visualization showing 3D digital corn stalks overlaid with glowing green data points and scanning lines. The UI elements are sleek and minimalist, with floating glass charts displaying growth percentages. The aesthetic is high-tech corporate agriculture, combining organic elements with advanced digital analytics in a clean, bright green environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY8DaP0akya0nYyUHLiKyIPZB_b5JBaGjY2vvdTXiXJshZy7cC7WBp5UpZllo4ZjKoRdXIWR7CIG17BcYXabofY38BOfSlSkTS1HM_U1nsKk5zLPxF7RiSZCldwf8_5CDvJdiZtNDdCrIe9jwz_WQ3TTc4j-hkvvaPRiel5fMJONki7I0IL5deH7IW7S02G-tbiyoSEL7l6QBzv5zdp9JT44yL6H7ytMwVZMLZdFM3lOqmsx2YEWY7QiTN-lKp9xo2jUx_iu6onBaQ"/>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile pb-2 pt-3 bg-surface-container dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline shadow-lg rounded-t-xl">
+<!-- Clima -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="cloud_sync">cloud_sync</span>
+<span class="font-label-md text-label-md">Clima</span>
+</a>
+<!-- Cosecha -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="grass">grass</span>
+<span class="font-label-md text-label-md">Cosecha</span>
+</a>
+<!-- Mapa -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="map">map</span>
+<span class="font-label-md text-label-md">Mapa</span>
+</a>
+<!-- Extras (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-full px-5 py-1 scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="grid_view" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-label-md text-label-md">Extras</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.fontVariationSettings = "'FILL' 1";
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.fontVariationSettings = "'FILL' 0";
+                }
+            });
+        });
+
+        // Simple tactile feedback simulation
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', () => {
+                el.classList.add('opacity-80', 'scale-95');
+                setTimeout(() => {
+                    el.classList.remove('opacity-80', 'scale-95');
+                }, 150);
+            });
+        });
+    </script>
+</body></html>

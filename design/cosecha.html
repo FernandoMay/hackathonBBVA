@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        /* Custom scrollbar suppression */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-card {
+            background: rgba(248, 250, 243, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(112, 122, 108, 0.1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005312",
+                        "primary-fixed-dim": "#88d982",
+                        "tertiary-fixed": "#cee5ff",
+                        "tertiary-fixed-dim": "#96ccff",
+                        "surface-container-high": "#e7e9e2",
+                        "primary-fixed": "#a3f69c",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d9dbd4",
+                        "outline-variant": "#bfcaba",
+                        "on-primary": "#ffffff",
+                        "primary": "#0d631b",
+                        "on-tertiary-fixed-variant": "#004a75",
+                        "on-primary-container": "#cbffc2",
+                        "secondary": "#7a5649",
+                        "surface-variant": "#e1e3dc",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4ed",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#2e7d32",
+                        "secondary-fixed": "#ffdbcf",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#e9f2ff",
+                        "surface-container-highest": "#e1e3dc",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#1b6d24",
+                        "tertiary": "#005a8c",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#001d32",
+                        "on-secondary-container": "#795548",
+                        "on-surface-variant": "#40493d",
+                        "inverse-on-surface": "#eff2eb",
+                        "on-primary-fixed": "#002204",
+                        "surface": "#f8faf3",
+                        "surface-bright": "#f8faf3",
+                        "inverse-surface": "#2e312d",
+                        "surface-container": "#edefe8",
+                        "tertiary-container": "#0073b2",
+                        "inverse-primary": "#88d982",
+                        "on-secondary-fixed": "#2e150b",
+                        "background": "#f8faf3",
+                        "outline": "#707a6c",
+                        "secondary-fixed-dim": "#ebbcac",
+                        "on-secondary-fixed-variant": "#603f33",
+                        "secondary-container": "#fdcdbc",
+                        "on-background": "#191c18",
+                        "on-surface": "#191c18"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "margin-desktop": "64px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface shadow-sm h-16 flex justify-between items-center px-margin-mobile">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">agriculture</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">TIMI</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a Mexican agricultural engineer in high-utility field gear, standing against a blurred background of a lush maize field. The lighting is soft morning sunlight, creating a warm and reliable corporate agricultural aesthetic. The color palette features deep greens and soft earthy browns." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl2UG2N2NLJhmjbI9PLPk60Q5QeSRiZTBssAOI0Idj8uCXXmeSkOjutp5vqMgqAp6qpF4QGUTXUccjamvLuqBN1kQ9GOCztPJl41f9xZoWhjwKotNsKqkc3o7lwcg8X6ntaYyiGvvydjJXtephPAqfXedBsgnAIq0Xrc9mt7_n88DE0iLsJbkLQEZ2DyNxuLsfOaw_IhTLqLCe2O7SNkwBngk9IifEoClX2QpSmxa52eV-fGV5iI9mtx36W0GY1ZYrfvkHaqjmFPUI"/>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile">
+<!-- Search Bar Section -->
+<section class="mt-4 mb-8">
+<div class="relative flex items-center group">
+<span class="material-symbols-outlined absolute left-4 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-xl border border-outline-variant bg-surface-container-low focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-lg text-on-surface" placeholder="Buscar semillas o variedades..." type="text"/>
+</div>
+</section>
+<!-- Dynamic Header -->
+<section class="mb-6">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Variedades de Maíz</h2>
+<p class="text-on-surface-variant font-body-md">Seleccionadas para tu región</p>
+</div>
+<button class="text-primary font-label-lg flex items-center gap-1 hover:opacity-70 transition-all">
+                    Ver todas <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Horizontal Carousel -->
+<section class="relative">
+<div class="flex overflow-x-auto gap-gutter no-scrollbar pb-6 -mx-margin-mobile px-margin-mobile snap-x snap-mandatory">
+<!-- Card 1: Maíz Blanco H-50 -->
+<div class="flex-none w-[85%] md:w-[320px] snap-center">
+<div class="bg-surface-container rounded-3xl overflow-hidden shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover" data-alt="A macro photograph of high-quality white maize ears (H-50 variety) with perfect uniform kernels, resting on a rustic wooden table in a brightly lit modern agricultural laboratory. The scene is illuminated by clean, natural sunlight, highlighting the texture and health of the crop. Colors are dominated by crisp whites and soft organic greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAujdzSAy8Nzyby4nqdcyO_4S4jhz-BBGRcxg6bE6pUYmLYW1e7n5mA220aSpptBse6soYq2SO9dud-Z9uAzEEpl60BO2julD4UFCtpKirFfw4_RIhV__6riHFifOxqZI93hSmTTt6glxETT0Pr2ejudAgkCmqm0WzuMWnTL6VqLBGUEyGdEvFwR0VhmG2VS75R40Y6WgRBbg2089XWFuoAhmjUkYcjflVPve53TzeJFUF8HjbH96263lY2spG6LKE3CutVZBqzFraA"/>
+<div class="absolute top-3 right-3 bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-label-md font-bold">
+                                RECOMENDADO
+                            </div>
+</div>
+<div class="p-5">
+<h3 class="font-title-lg text-title-lg mb-4 text-on-surface">Maíz Blanco H-50</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">equalizer</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase font-bold tracking-wider">Rendimiento</p>
+<p class="text-on-surface font-label-lg">12.5 t/ha</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">calendar_today</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase font-bold tracking-wider">Ciclo</p>
+<p class="text-on-surface font-label-lg">145 Días</p>
+</div>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-between border-t border-outline-variant pt-4">
+<span class="text-on-surface-variant font-body-md">Resistencia a plagas</span>
+<div class="flex gap-1">
+<div class="w-4 h-1.5 rounded-full bg-primary"></div>
+<div class="w-4 h-1.5 rounded-full bg-primary"></div>
+<div class="w-4 h-1.5 rounded-full bg-primary"></div>
+<div class="w-4 h-1.5 rounded-full bg-outline-variant"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Maíz Amarillo VS-535 -->
+<div class="flex-none w-[85%] md:w-[320px] snap-center">
+<div class="bg-surface-container rounded-3xl overflow-hidden shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover" data-alt="Close-up of vibrant yellow maize ears (VS-535 variety) in a sunny field during harvest season. The kernels are bright and golden, glistening under a clear blue sky. The background shows healthy green stalks and a soft bokeh effect. The lighting is warm and golden-hour focused, emphasizing growth and productivity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUoK6hZAtESZGH-NrsyUqqTZ1fMb6FcGDZ-l1YaPr8LxVwl9eWd8Z8HpfEMBmYsEF4w9F34JSD8cdoUVwjGOZq8qb7eH8xkymBpDIGTuVB_ewnwxg-XU9ltQ6mkzcVQjfo1euYfnZQGedAOi0-l2I-VK28K5ZoOwtWPSPwDytIzVdOiyA4R_NP0yFxNJMRyjC-wHagSFefX9lUHzUA0KQ1zavn2Wb2Nz9JVlT4YCuB7GpcWSGbyWI3RMXoWqaXl9tm8v1vomA-eNnY"/>
+</div>
+<div class="p-5">
+<h3 class="font-title-lg text-title-lg mb-4 text-on-surface">Maíz Amarillo VS-535</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">equalizer</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase font-bold tracking-wider">Rendimiento</p>
+<p class="text-on-surface font-label-lg">11.2 t/ha</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">calendar_today</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase font-bold tracking-wider">Ciclo</p>
+<p class="text-on-surface font-label-lg">130 Días</p>
+</div>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-between border-t border-outline-variant pt-4">
+<span class="text-on-surface-variant font-body-md">Resistencia a plagas</span>
+<div class="flex gap-1">
+<div class="w-4 h-1.5 rounded-full bg-primary"></div>
+<div class="w-4 h-1.5 rounded-full bg-primary"></div>
+<div class="w-4 h-1.5 rounded-full bg-outline-variant"></div>
+<div class="w-4 h-1.5 rounded-full bg-outline-variant"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Maíz Azul Criollo -->
+<div class="flex-none w-[85%] md:w-[320px] snap-center">
+<div class="bg-surface-container rounded-3xl overflow-hidden shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover" data-alt="A cinematic overhead shot of several ears of traditional blue heirloom maize (Maíz Azul Criollo) laid out on a clean, light-colored surface. The dark indigo and violet kernels contrast beautifully with the bright environment. The style is modern minimalist with an emphasis on organic texture and heritage. Lighting is diffused and soft." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwlTlhvt_lmHuKKSplxro6w2YTEs9H5tim1SN_wxnKwSR7uENNQEkKkNxN1KaVcVOpd7umu8I2yvYb1djyXa59iP74TOnEUPIorvaVcht_0Sg6rxp7cTGDPw2ZXM1RZdmxpMCTbjP7jfOcKyyy29foR5qI2jih4nBr0kd5-lziaJrd8-mQoHF6Ve4Cg-dNbR89cdtsu-l8rhqc36HidHfuUfAohQB9wa3VoTfBBh3s9XzoJbyKWr7GPYXy69ttC9DNRHyuMQrTM99k"/>
+<div class="absolute top-3 right-3 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-md font-bold">
+                                TRADICIONAL
+                            </div>
+</div>
+<div class="p-5">
+<h3 class="font-title-lg text-title-lg mb-4 text-on-surface">Maíz Azul Criollo</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">equalizer</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase font-bold tracking-wider">Rendimiento</p>
+<p class="text-on-surface font-label-lg">8.5 t/ha</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">calendar_today</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase font-bold tracking-wider">Ciclo</p>
+<p class="text-on-surface font-label-lg">160 Días</p>
+</div>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-between border-t border-outline-variant pt-4">
+<span class="text-on-surface-variant font-body-md">Resistencia a plagas</span>
+<div class="flex gap-1">
+<div class="w-4 h-1.5 rounded-full bg-primary"></div>
+<div class="w-4 h-1.5 rounded-full bg-primary"></div>
+<div class="w-4 h-1.5 rounded-full bg-primary"></div>
+<div class="w-4 h-1.5 rounded-full bg-primary"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Performance Insights (Bento Style) -->
+<section class="mt-8 mb-4">
+<h3 class="font-title-lg text-title-lg text-on-surface mb-4">Insights de Temporada</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-2 p-5 rounded-3xl bg-primary-container text-on-primary-container">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-[32px]">trending_up</span>
+<span class="font-label-lg bg-white/20 px-2 py-1 rounded-lg">+12% vs 2023</span>
+</div>
+<p class="font-body-md opacity-90">Rendimiento Proyectado</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile font-bold">9.8 Ton/ha</p>
+</div>
+<div class="p-5 rounded-3xl bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined text-[24px] mb-2">water_drop</span>
+<p class="font-label-md">Humedad Ideal</p>
+<p class="font-title-lg font-bold">14.5%</p>
+</div>
+<div class="p-5 rounded-3xl bg-tertiary-container text-on-tertiary-container">
+<span class="material-symbols-outlined text-[24px] mb-2">potted_plant</span>
+<p class="font-label-md">Suelo Nutritivo</p>
+<p class="font-title-lg font-bold">Óptimo</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile pb-2 pt-3 bg-surface-container rounded-t-xl shadow-lg border-t border-outline-variant">
+<!-- Clima Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined">cloud_sync</span>
+<span class="font-label-md text-label-md">Clima</span>
+</a>
+<!-- Cosecha Tab (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grass</span>
+<span class="font-label-md text-label-md">Cosecha</span>
+</a>
+<!-- Mapa Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-md text-label-md">Mapa</span>
+</a>
+<!-- Extras Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-md text-label-md">Extras</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for active states
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // In a real app, this would navigate. Here we just show the active transition.
+                document.querySelectorAll('nav a').forEach(l => {
+                    l.classList.remove('bg-primary-container', 'text-on-primary-container', 'rounded-full', 'scale-90');
+                    l.classList.add('text-on-surface-variant');
+                    const icon = l.querySelector('.material-symbols-outlined');
+                    if(icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                link.classList.add('bg-primary-container', 'text-on-primary-container', 'rounded-full', 'scale-90');
+                link.classList.remove('text-on-surface-variant');
+                const icon = link.querySelector('.material-symbols-outlined');
+                if(icon) icon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+    </script>
+</body></html>

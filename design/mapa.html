@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TIMI - Mapa Agroclimático</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-layer {
+            border-color: #0d631b !material;
+            background-color: #2e7d32 !important;
+            color: #ffffff !important;
+        }
+        /* Custom scrollbar for clean UI */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #bfcaba; border-radius: 10px; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005312",
+                        "primary-fixed-dim": "#88d982",
+                        "tertiary-fixed": "#cee5ff",
+                        "tertiary-fixed-dim": "#96ccff",
+                        "surface-container-high": "#e7e9e2",
+                        "primary-fixed": "#a3f69c",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d9dbd4",
+                        "outline-variant": "#bfcaba",
+                        "on-primary": "#ffffff",
+                        "primary": "#0d631b",
+                        "on-tertiary-fixed-variant": "#004a75",
+                        "on-primary-container": "#cbffc2",
+                        "secondary": "#7a5649",
+                        "surface-variant": "#e1e3dc",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4ed",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#2e7d32",
+                        "secondary-fixed": "#ffdbcf",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#e9f2ff",
+                        "surface-container-highest": "#e1e3dc",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#1b6d24",
+                        "tertiary": "#005a8c",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#001d32",
+                        "on-secondary-container": "#795548",
+                        "on-surface-variant": "#40493d",
+                        "inverse-on-surface": "#eff2eb",
+                        "on-primary-fixed": "#002204",
+                        "surface": "#f8faf3",
+                        "surface-bright": "#f8faf3",
+                        "inverse-surface": "#2e312d",
+                        "surface-container": "#edefe8",
+                        "tertiary-container": "#0073b2",
+                        "inverse-primary": "#88d982",
+                        "on-secondary-fixed": "#2e150b",
+                        "background": "#f8faf3",
+                        "outline": "#707a6c",
+                        "secondary-fixed-dim": "#ebbcac",
+                        "on-secondary-fixed-variant": "#603f33",
+                        "secondary-container": "#fdcdbc",
+                        "on-background": "#191c18",
+                        "on-surface": "#191c18"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "margin-desktop": "64px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-margin-mobile h-16 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm docked full-width top-0 fixed">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim text-2xl">agriculture</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">TIMI</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A close-up professional profile portrait of a smiling Mexican agricultural engineer wearing a clean white shirt and a canvas hat. The lighting is warm and natural, suggesting an outdoor setting at dusk. The background is a soft-focus lush green field, maintaining a high-end corporate yet organic aesthetic consistent with the TIMI brand colors of emerald green and earth tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZxTDOMwL9t1-vD3EwEujYfPcWirLtj6vYcrNfzcE1a5b2pHQcCLcTAEmtP4Pv0guxAS73fOjSlBpjRGSe2_BtA2O3G5j7R1hLrXg8-32JnxJJnguIt8IaxS76WudoRRjMqFg2NIzoeSo-fEm7KDQW11I8UG0EneX2BZ7AZ6L34FAy0Gg352ICxsaXOjlO1lTsa1OA3jZ0URip6r2ncA3uRVqwi_ormxmE_Jd-pD5TCjjQIn_bpNKKrDS-7NZaP6f8VTDnU9cRUkDP"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 relative overflow-hidden">
+<!-- Interactive Map Container -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center grayscale-[20%] brightness-90" data-alt="A highly detailed satellite view map of Mexico, focusing on the diverse agricultural regions from the lush tropical south to the arid north. The map is overlaid with semi-transparent, vibrant heat-map layers of green, blue, and orange, representing agroclimatic zones. The visual style is clean, modern, and high-tech, with sharp data visualization aesthetics and a soft glow, fitting a professional agricultural management app." data-location="Mexico" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCK15H3U52vbz5ZLpYwsSERn1uiwdZN8PMJxhyyX1fbyeXTdw_YatpfcwL16bbj6tniaJtaJieZA83xFnR3uT9wQAlzg-_uixm6HScTOCtbPrXWo2ntKRSajnkrisxs8h17SfZELxYCvCNBI0MD6CWT4dR5vUL1xvN8K3b8q9f521AaUIFxUbT51wJv3h7IV5ru-_jKJDmSwb9pl5SJTNwtyE7sJeOFNNWbBefcoa-hQ29X1MwyoXsp5fHcrqqlh2llNoW0T7cNKyXf')"></div>
+<!-- Glassmorphism Overlay for Map UI Interaction -->
+<div class="absolute top-4 left-4 z-10 space-y-3">
+<!-- Layers Selector -->
+<div class="bg-surface/80 backdrop-blur-md p-3 rounded-xl shadow-sm border border-white/20 w-56">
+<p class="font-label-lg text-label-lg text-on-surface-variant mb-2 px-1">Capas de Datos</p>
+<div class="space-y-1">
+<button class="active-layer w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all hover:bg-surface-container-low" onclick="toggleLayer(this)">
+<span class="material-symbols-outlined text-xl">ev_station</span>
+<span class="font-label-md text-label-md">Precipitación</span>
+</button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant transition-all hover:bg-surface-container-low" onclick="toggleLayer(this)">
+<span class="material-symbols-outlined text-xl">thermostat</span>
+<span class="font-label-md text-label-md">Temperatura</span>
+</button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant transition-all hover:bg-surface-container-low" onclick="toggleLayer(this)">
+<span class="material-symbols-outlined text-xl">water_drop</span>
+<span class="font-label-md text-label-md">Humedad Suelo</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Search / Location Card (Floating UI) -->
+<div class="absolute top-4 right-4 z-10">
+<div class="bg-surface/90 backdrop-blur-md h-12 flex items-center px-4 rounded-full shadow-lg border border-white/20 gap-3">
+<span class="material-symbols-outlined text-primary">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 font-body-md placeholder:text-on-surface-variant/60" placeholder="Buscar parcela o región..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Legend (Bottom) -->
+<div class="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-md">
+<div class="bg-surface-container/90 backdrop-blur-xl p-4 rounded-2xl shadow-xl border border-outline-variant/30">
+<div class="flex justify-between items-center mb-3">
+<span class="font-label-lg text-label-lg font-bold">Niveles de Precipitación</span>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">mm / h</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="flex-1 h-3 rounded-l-full bg-[#E8F5E9]"></div>
+<div class="flex-1 h-3 bg-[#A5D6A7]"></div>
+<div class="flex-1 h-3 bg-[#66BB6A]"></div>
+<div class="flex-1 h-3 bg-[#388E3C]"></div>
+<div class="flex-1 h-3 rounded-r-full bg-[#1B5E20]"></div>
+</div>
+<div class="flex justify-between mt-2 px-1">
+<span class="text-[10px] font-medium text-on-surface-variant">Bajo</span>
+<span class="text-[10px] font-medium text-on-surface-variant">Moderado</span>
+<span class="text-[10px] font-medium text-on-surface-variant">Óptimo</span>
+<span class="text-[10px] font-medium text-on-surface-variant">Alto</span>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-4 z-30 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all group">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">my_location</span>
+<div class="absolute right-16 bg-on-surface text-surface text-xs py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                Localizar mi parcela
+            </div>
+</button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile pb-2 pt-3 bg-surface-container dark:bg-surface-container-highest rounded-t-xl shadow-lg border-t border-outline-variant dark:border-outline">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">cloud_sync</span>
+<span class="font-label-md text-label-md">Clima</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">grass</span>
+<span class="font-label-md text-label-md">Cosecha</span>
+</a>
+<!-- Active Tab: Mapa -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-full px-5 py-1 scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-label-md text-label-md">Mapa</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+<span class="font-label-md text-label-md">Extras</span>
+</a>
+</nav>
+<script>
+        function toggleLayer(element) {
+            // Remove active classes from all buttons in the same container
+            const buttons = element.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.classList.remove('active-layer');
+                btn.classList.add('text-on-surface-variant');
+            });
+            
+            // Add active class to clicked button
+            element.classList.add('active-layer');
+            element.classList.remove('text-on-surface-variant');
+            
+            // Interaction feedback
+            element.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 150);
+        }
+
+        // Simulate a pulsing effect for the "current location" on map
+        const pulseEffect = document.createElement('div');
+        pulseEffect.innerHTML = `
+            <div class="absolute top-[45%] left-[60%] w-4 h-4 bg-primary rounded-full z-10 ring-4 ring-primary/30 animate-pulse">
+                <div class="absolute -top-10 -left-12 bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow text-[10px] font-bold text-primary border border-primary/20 whitespace-nowrap">
+                    Rancho El Álamo
+                </div>
+            </div>
+        `;
+        document.querySelector('[data-location="Mexico"]').appendChild(pulseEffect);
+    </script>
+</body></html>

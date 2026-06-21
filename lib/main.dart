@@ -7,6 +7,7 @@ import 'uno.dart';
 import 'maiz.dart';
 import 'tres.dart';
 import 'webview.dart';
+import 'theme/app_theme.dart';
 
 Future<Clima> fetchPost() async {
   final response =
@@ -28,20 +29,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TIMI',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF2E7D32),
-          brightness: Brightness.light,
-        ),
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF2E7D32),
-          brightness: Brightness.dark,
-        ),
-      ),
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
       home: const SplashMove(),
     );
   }
@@ -197,12 +186,13 @@ class MyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       width: MediaQuery.of(context).size.width - 40,
       margin: const EdgeInsets.all(20.0),
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerLowest,
+        color: theme.colorScheme.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
@@ -228,8 +218,10 @@ class MyCard extends StatelessWidget {
             child: Center(
               child: Text(
                 texto,
-                style: const TextStyle(
-                    fontSize: 28.0, fontStyle: FontStyle.italic),
+                style: TextStyle(
+                    fontSize: 28.0,
+                    fontStyle: FontStyle.italic,
+                    color: theme.colorScheme.onSurface),
               ),
             ),
           ),
