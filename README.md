@@ -1,41 +1,16 @@
-# TIMI — Tecnología Inteligente para el Maíz e Información
+# bbva
 
-**TIMI** is an agricultural technology assistant built for the BBVA Hackathon, designed to help Mexican farmers make data-driven decisions.
-
-## Purpose
-
-TIMI empowers farmers with real-time weather data, crop variety information, agroclimatic maps, and AI-powered analysis — all from a single mobile app.
-
-## Features
-
-| Screen       | Description                                                                 |
-|--------------|-----------------------------------------------------------------------------|
-| **Clima hoy**  | Real-time weather from CONAGUA API: temperature, precipitation, humidity, wind |
-| **Cosecha**    | Carousel of maize/corn seed varieties with detailed information               |
-| **Mapa**       | WebView displaying agroclimatic maps from CONAGUA                             |
-| **Extras**     | Colorimetry, soil testing, drone imagery, pest/bacteria reference, and more   |
-
-## Stack
-
-- **Flutter** (SDK >=3.0.0) — Cross-platform mobile framework
-- **Material 3** — Modern design with agricultural green theme
-- **CONAGUA API** — Mexican national water commission weather data
-- **WebView** — In-app agroclimatic maps
-- **AWS Rekognition** (stub) — Plant disease detection via image analysis
+A new Flutter project.
 
 ## Getting Started
 
-```bash
-flutter pub get
-flutter run
-```
+This project is a starting point for a Flutter application.
 
-## Testing
+A few resources to get you started if this is your first Flutter project:
 
-```bash
-flutter test
-```
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-## CI/CD
-
-GitHub Actions workflow runs analysis, tests, and debug APK build on every push.
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
